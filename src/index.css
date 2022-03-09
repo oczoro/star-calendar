@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  html,
+  body {
+    height: 100%;
+  }
+
+  #app {
+    height: 100%;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+      327deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(253, 29, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    );
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-blend-mode: hard-light;
+    animation: hue-rotate 18s linear infinite;
+  }
+
+  @keyframes hue-rotate {
+    0% {
+      filter: hue-rotate(0);
+    }
+    50% {
+      filter: hue-rotate(-100deg);
+    }
+    100% {
+      filter: hue-rotate(0);
+    }
+  }
+
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.4');
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+  }
+
+  .card:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    backface-visibility: hidden;
+  }
+
+  .card-btn {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.4');
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    border-radius: 30px;
+    transition-duration: 0.4s;
+  }
+
+  .card-btn:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+}
