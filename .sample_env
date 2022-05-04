@@ -1,0 +1,7 @@
+APIKEY="apikey"
+AUTHDOMAIN="authdomain"
+PROJECTID="projectid"
+STORAGEBUCKET="storagebucket"
+MESSAGINGSENDERID="messagingsenderid"
+APPID="appid"
+MEASUREMENTID="measurementid"

@@ -3,40 +3,133 @@
 @tailwind utilities;
 
 @layer components {
-  html,
-  body {
+  :root {
+    --alpha-value: 0.5;
+    --bg-rotation-value: 322deg;
+  }
+
+  html {
     height: 100%;
+    animation: hue-rotate 60s linear infinite;
   }
 
   #app {
-    height: 100%;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  body {
+    min-height: 100%;
     background: rgb(131, 58, 180);
     background: linear-gradient(
-      327deg,
-      rgba(131, 58, 180, 1) 0%,
-      rgba(253, 29, 29, 1) 50%,
-      rgba(252, 176, 69, 1) 100%
+      var(--bg-rotation-value),
+      rgba(131, 58, 180, var(--alpha-value)) 0%,
+      rgba(253, 29, 29, var(--alpha-value)) 50%,
+      rgba(252, 176, 69, var(--alpha-value)) 100%
     );
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-blend-mode: hard-light;
-    animation: hue-rotate 18s linear infinite;
   }
 
   @keyframes hue-rotate {
     0% {
       filter: hue-rotate(0);
     }
-    50% {
-      filter: hue-rotate(-100deg);
-    }
     100% {
-      filter: hue-rotate(0);
+      filter: hue-rotate(-360deg);
     }
   }
 
+  .star {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+  }
+
+  .profile-icon {
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 20%);
+    border-radius: 100%;
+    box-shadow: theme('boxShadow.xl');
+  }
+
+  .profile-icon:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    filter: brightness(105%);
+  }
+
+  .icon-button {
+    border-radius: 12px;
+    transition: 0.15s ease-in-out;
+  }
+
+  .icon-button:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+    filter: brightness(105%);
+    box-shadow: theme('boxShadow.xl');
+  }
+
+  .btn {
+    background-color: theme('colors.blue.400');
+    padding: theme('spacing.2');
+    padding-left: theme('spacing.3');
+    padding-right: theme('spacing.3');
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    border-radius: 30px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
+  }
+
+  .field {
+    background: white;
+    /* background: rgb(194, 194, 194);
+    background: linear-gradient(
+      322deg,
+      rgba(194, 194, 194, 1) 0%,
+      rgba(255, 255, 255, 1) 65%
+    ); */
+    padding: theme('spacing.2');
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    border-radius: theme('borderRadius.lg');
+  }
+
+  #overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal-card {
+    background: white;
+    /* background: rgb(194, 194, 194);
+    background: linear-gradient(
+      322deg,
+      rgba(194, 194, 194, 1) 0%,
+      rgba(255, 255, 255, 1) 65%
+    ); */
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.4');
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+  }
+
   .card {
-    background-color: theme('colors.white');
+    background: white;
+    /* background: rgb(194, 194, 194);
+    background: linear-gradient(
+      322deg,
+      rgba(194, 194, 194, 1) 0%,
+      rgba(255, 255, 255, 1) 65%
+    ); */
     border-radius: theme('borderRadius.lg');
     padding: theme('spacing.4');
     box-shadow: theme('boxShadow.xl');
@@ -52,8 +145,13 @@
   }
 
   .card-btn {
-    background-color: theme('colors.white');
-    border-radius: theme('borderRadius.lg');
+    background: whtie;
+    /* background: rgb(194, 194, 194);
+    background: linear-gradient(
+      322deg,
+      rgba(194, 194, 194, 1) 0%,
+      rgba(255, 255, 255, 1) 65%
+    ); */
     padding: theme('spacing.4');
     padding-left: 25px;
     padding-right: 25px;
@@ -61,10 +159,47 @@
     border: 2px solid rgba(0, 0, 0, 20%);
     border-radius: 30px;
     transition-duration: 0.4s;
+    transition-timing-function: ease;
+  }
+
+  button:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+    filter: brightness(105%);
+    backface-visibility: hidden;
   }
 
   .card-btn:hover {
     cursor: pointer;
     transform: translateY(-5px);
+    filter: brightness(105%);
+    backface-visibility: hidden;
+  }
+
+  .cta-btn {
+    background: white;
+    /* background: rgb(194, 194, 194);
+    background: linear-gradient(
+      322deg,
+      rgba(194, 194, 194, 1) 0%,
+      rgba(255, 255, 255, 1) 65%
+    ); */
+    padding: theme('spacing.5');
+    padding-left: 25px;
+    padding-right: 25px;
+    box-shadow: theme('boxShadow.xl');
+    border: 2px solid rgba(0, 0, 0, 20%);
+    border-radius: 20px;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
+
+  .cta-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(105%);
+  }
+
+  .text-center-last {
+    text-align-last: center;
   }
 }

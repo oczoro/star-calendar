@@ -9,13 +9,15 @@ At the end of the day, the user puts a star on the calendar if they have complet
 
 ### Built With
 
-Star Calendar is built with fast and modern frameworks/libraries.
-
 Frontend -
 
 - [Vue.js](https://vuejs.org)
 - [Vite](https://vitejs.dev/)
 - [TailwindCSS](https://tailwindcss.com/)
+
+Backend -
+
+- [Firebase](https://firebase.google.com/)
 
 ## Getting Started
 
@@ -44,6 +46,8 @@ Make sure you have downloaded and installed the latest node.js version.
 
 ## Usage
 
+Make sure to replace the .env values with your own firebase project config.
+
 Inside the root directory, run the project.
 
 ```sh
@@ -56,12 +60,15 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Add User integration
-- [ ] Add Firestore Database
-- [ ] Add Yearly Calendar
-- [ ] Add Ability to track multiple month progress
-- [ ] Add Profile customization
-- [ ] Add Reward system
+- [x] Add Firestore Database
+- [x] Add User integration
+- [x] Add Yearly Calendar
+- [x] Add Ability to track multiple month progress
+- [x] Add Profile customization
+- [ ] Add Calendar dropdown functionality
+- [ ] Add Reward/Store system
+- [ ] Add Inventory system
+- [ ] Implement Settings
 
 ## Contact
 
