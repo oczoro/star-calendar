@@ -54,9 +54,9 @@ Inside the root directory, run the project.
 npm run dev
 ```
 
-## Demo
+## Demo - (Under Development)
 
-//TODO
+[Star Calendar](https://star-calendar.herokuapp.com/)
 
 ## Roadmap
 
