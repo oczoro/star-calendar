@@ -6,6 +6,7 @@
           :data="current_date"
           :today="today"
           :full_month="getFullMonth()"
+          @update-month="updateCalendarMonth"
           @next-month="nextMonth"
           @prev-month="prevMonth"
           @today-clicked="todayClicked"
@@ -18,7 +19,7 @@
 <script setup>
 import { ref, onMounted, useSSRContext } from 'vue';
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
-import { getUserCalendar, updateUserDate } from '../db_api';
+import { getUserCalendar, updateUserDate, updateUserBalance } from '../db_api';
 import months from '../constants/Months';
 import Month from './Month.vue';
 
@@ -83,10 +84,18 @@ onMounted(() => {
   });
 });
 
-function getFullMonth() {
-  return months[current_date.value.month - 1];
-}
+function updateCalendarMonth(date) {
+  // Check if date exists in User's Month List
+  for (let index in month_list.value) {
+    let month = month_list.value[index];
+    if (month.month == getMonthIndex(date.month) && month.year == date.year) {
+      current_index.value = index;
+    }
+  }
 
+  // Update Current Date
+  current_date.value = month_list.value[current_index.value];
+}
 function nextMonth() {
   if (current_index.value + 1 > month_list.value.length - 1) return;
   current_index.value++;
@@ -97,6 +106,7 @@ function prevMonth() {
   current_index.value--;
   current_date.value = month_list.value[current_index.value];
 }
+
 async function todayClicked() {
   // Check And Get Month From List
   let check = user_calendar.value.months.find(
@@ -128,6 +138,30 @@ async function todayClicked() {
     }
   }
   await updateUserDate(user_uid, user_calendar.value.months);
+  let balance = [0, 0, 0];
+  for (let index in month_list.value) {
+    let month = month_list.value[index];
+    month.days.forEach((day) => {
+      if (day != '') {
+        switch (day) {
+          case '⭐':
+            balance[0]++;
+            break;
+          case '🌟':
+            balance[1]++;
+            break;
+          case '✨':
+            balance[2]++;
+            break;
+        }
+      }
+    });
+  }
+  await updateUserBalance(user_uid, balance);
+}
+
+function getFullMonth() {
+  return months[current_date.value.month - 1];
 }
 
 function getMonthList() {
@@ -200,6 +234,10 @@ function checkDayStreak(days, day, counter, end) {
 
 function getLastDayOfMonth(date) {
   return new Date(date.year, date.month, 0).getDate();
+}
+
+function getMonthIndex(month) {
+  return months.indexOf(month) + 1;
 }
 </script>
 

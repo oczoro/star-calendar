@@ -65,10 +65,11 @@ npm run dev
 - [x] Add Yearly Calendar
 - [x] Add Ability to track multiple month progress
 - [x] Add Profile customization
-- [ ] Add Calendar dropdown functionality
-- [ ] Add Reward/Store system
-- [ ] Add Inventory system
+- [x] Add Calendar dropdown functionality
+- [ ] Implement Reward/Store system
+- [ ] Implement Inventory system
 - [ ] Implement Settings
+- [ ] Fix mobile screen responsiveness
 
 ## Contact
 

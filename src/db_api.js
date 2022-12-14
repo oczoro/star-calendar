@@ -13,9 +13,11 @@ export const updateUserName = async (uid, username) => {
 export const updateUserIcon = async (uid, icon) => {
   return await updateDoc(doc(db, 'users', uid), { icon: icon });
 };
+export const updateUserBalance = async (uid, balance) => {
+  return await updateDoc(doc(db, 'users', uid), { balance: balance });
+};
 
 export const getUser = async (uid) => {
-  console.log('get User');
   const snapDoc = await getDoc(doc(db, 'users', uid));
   if (snapDoc.exists()) {
     return snapDoc.data();
@@ -25,7 +27,6 @@ export const getUser = async (uid) => {
 };
 
 export const getUserCalendar = async (uid) => {
-  console.log('get Calendar');
   const snapDoc = await getDoc(doc(db, 'users_calendar', uid));
   if (snapDoc.exists()) {
     return snapDoc.data();

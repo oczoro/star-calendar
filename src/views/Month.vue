@@ -14,8 +14,9 @@
           id="month-input"
           class="field p-2 mr-2 text-center-last"
           v-model="full_month"
-          @change=""
-          disabled="true"
+          @change="
+            $emit('update-month', { month: full_month, year: data.year })
+          "
         >
           <option v-for="(month, index) in months" :key="index" :value="month">
             {{ month }}
@@ -26,8 +27,9 @@
           id="month-input"
           class="field p-2 ml-2 text-center-last"
           v-model="data.year"
-          @change=""
-          disabled="true"
+          @change="
+            $emit('update-month', { month: full_month, year: data.year })
+          "
         >
           <option v-for="index in 4" :key="index" :value="index + 2020">
             {{ index + 2020 }}
