@@ -1,12 +1,10 @@
 <template>
   <form
     class="w-80 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2/3"
-    @submit.prevent="submitForm"
-  >
+    @submit.prevent="submitForm">
     <div
       @click="$emit('closeModal')"
-      class="absolute right-1 cursor-pointer text-xl"
-    >
+      class="absolute right-1 cursor-pointer text-xl">
       <i class="pt-2 pr-1 fa-solid fa-circle-xmark"></i>
     </div>
     <div class="modal-card p-10 flex flex-col">
@@ -16,24 +14,31 @@
         class="p-2 mt-4 border-2 border-solid border-gray-300"
         type="text"
         placeholder="Name"
-        v-model="username"
-      />
+        v-model="username" />
       <input
         class="p-2 mt-4 border-2 border-solid border-gray-300"
         type="text"
         placeholder="Email"
-        v-model="email"
-      />
+        v-model="email" />
       <input
         class="p-2 mt-4 border-2 border-solid border-gray-300"
         type="password"
         placeholder="Password"
-        v-model="password"
-      />
-      <div class="text-red-600 pt-2" v-if="errMsg">{{ errMsg }}</div>
-      <button class="btn mt-4" type="submit">Submit</button>
+        v-model="password" />
+      <div
+        class="text-red-600 pt-2"
+        v-if="errMsg">
+        {{ errMsg }}
+      </div>
+      <button
+        class="btn mt-4"
+        type="submit">
+        Submit
+      </button>
       <hr class="mt-4 bg-black" />
-      <div class="mt-2 hover:underline cursor-pointer" @click="toggleOption()">
+      <div
+        class="mt-2 hover:underline cursor-pointer"
+        @click="toggleOption()">
         {{ primary_option == 'Login' ? 'Register' : 'Login' }}
       </div>
     </div>
@@ -42,11 +47,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 import { createUser } from '../db_api';
 import User from '../models/User';
@@ -75,14 +76,11 @@ function submitForm() {
           const uid = data.user.uid;
 
           const user = new User(username.value, email.value);
-          const user_calendar = new UserCalendar(
-            today.getMonth(),
-            today.getFullYear()
-          );
+          const user_calendar = new UserCalendar(today.getMonth(), today.getFullYear());
 
           createUser(uid, user.returnOBJ(), user_calendar.returnOBJ());
 
-          router.push('/dashboard');
+          router.push('/star-calendar/dashboard');
         })
         .catch((error) => {
           console.log(error.code);
@@ -103,7 +101,7 @@ function submitForm() {
   } else if (primary_option.value == 'Login') {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
       .then((data) => {
-        router.push('/dashboard');
+        router.push('/star-calendar/dashboard');
       })
       .catch((error) => {
         console.log(error.code);
