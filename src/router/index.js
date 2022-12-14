@@ -3,14 +3,14 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const routes = [
   {
-    path: '/',
+    path: '/star-calendar/',
     component: () => import('../views/Home.vue'),
     meta: {
       requiresUnAuth: true,
     },
   },
   {
-    path: '/dashboard',
+    path: '/star-calendar/dashboard',
     component: () => import('../views/Dashboard.vue'),
     meta: {
       requiresAuth: true,
@@ -39,7 +39,7 @@ function getCurrentUser() {
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresUnAuth)) {
     if (await getCurrentUser()) {
-      next('/dashboard');
+      next('/star-calendar/dashboard');
     } else {
       next();
     }
@@ -47,7 +47,7 @@ router.beforeEach(async (to, from, next) => {
     if (await getCurrentUser()) {
       next();
     } else {
-      next('/');
+      next('/star-calendar/');
     }
   } else {
     next();
